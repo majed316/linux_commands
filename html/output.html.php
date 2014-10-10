@@ -19,51 +19,18 @@
         </style>
     </head>
     <body>
-        <!--<p>
-        <pre>
-            <?php //print_r($catRows) ?>
-        </pre>
-        <pre>
-            <?php //print_r($commandRows); ?>
-        </pre>
-        </p>
-        -->        
         <?php
         $iteration = 0;
         foreach ($catRows as $catKey=>$catValue){
-            //print_r($catValue);
             $data[$catKey] = $catValue;
             foreach ($commandRows as $key => $value){
                 if ($catValue['cat_id'] == $value['category_cat_id']){
-                    //print_r($value);
                     $data[$catKey]['commands'][$key] = $value;
                     unset($commandRows[$key]);
                 }
-                $iteration += 1;
+                $iteration += 1; //for optimization purposes.
                 }
         }
-        //print_r($data);
-        //}
-       
-        /* Building the $data Array Start here
-        $data = array();
-        $count = 0;
-        for ($i=0; $i < count($catRows); $i++){
-            //print_r($catRows[$i]);
-            $data[$i] = $catRows[$i];
-            for ($j=0; $j < count($commandRows); $j++){
-                if ($catRows[$i]['cat_id'] == $commandRows[$j]['category_cat_id']){
-                    $data[$i]['commands'][$j] = $commandRows[$j];
-                    //print_r($commandRows[$j]);
-                    //array_splice($commandRows, $j, $j-1);
-                    //unset($commandRows[$j]);
-                    //$commandRows = array_values($commandRows);
-                }
-            $count += 1;
-        }
-        }
-        //echo $count;
-        //print_r($data);*/
         ?>
         <table>
         <?php
@@ -89,17 +56,7 @@
             }
         }
         echo "</table>\r\n";
-    /* Using foreach
-    foreach($catRows as $mainRow){
-    print_r($mainRow);
-    foreach($commandRows as $branchRow){
-        if ($mainRow['cat_id'] == $branchRow['category_cat_id'])
-        print_r($branchRow);
-    $count = $count + 1;
-    }
-    }
-    echo $count;*/
-        echo 'DataArray iterations: ' . $iteration
+        echo 'DataArray iterations: ' . $iteration //for debugging purpose.
 ?>
     </body>
 </html>
