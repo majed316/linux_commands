@@ -1,15 +1,16 @@
 <?php
 
 /*
- * Created By Majed Ali
+ * index.php
+ * entry file
  */
 include '/inc/db.inc.php';
 try
 {
     $catSql = 'SELECT * FROM category';
     $commandSql = 'SELECT * FROM command';
-    $catResult = $pdo->query($catSql);
-    $commandResult = $pdo->query($commandSql);
+    $catResult = $db->query($catSql);
+    $commandResult = $db->query($commandSql);
     $catRows = $catResult->fetchall();
     $commandRows = $commandResult->fetchall();
 } catch (PDOException $e) {
