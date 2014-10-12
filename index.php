@@ -4,7 +4,7 @@
  * index.php
  * entry file
  */
-include '/inc/db.inc.php';
+include './inc/db.inc.php';
 try
 {
     $catSql = 'SELECT * FROM category';
@@ -18,4 +18,4 @@ try
     include '../html/error.html.php';
     exit();
 }
-include '/html/output.html.php';
+include './html/output.html.php';
