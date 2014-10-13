@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 
-include 'config.local.php';
+ include 'config.local.php';

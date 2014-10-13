@@ -4,7 +4,8 @@
  * db.inc.php
  * all database connections happen here.
  */
-include 'config.global.php';
+ include 'config.global.php';
+ 
 try
 {
     $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
