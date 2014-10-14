@@ -53,7 +53,7 @@ INSERT INTO `category` (`cat_id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `command` (
   `command_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `command_name` varchar(45) DEFAULT NULL,
-  `command_discription` varchar(500) DEFAULT NULL,
+  `command_description` varchar(500) DEFAULT NULL,
   `command_form` varchar(500) DEFAULT NULL,
   `category_cat_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`command_id`),
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `command` (
 -- Dumping data for table `command`
 --
 
-INSERT INTO `command` (`command_id`, `command_name`, `command_discription`, `command_form`, `category_cat_id`) VALUES
+INSERT INTO `command` (`command_id`, `command_name`, `command_description`, `command_form`, `category_cat_id`) VALUES
 (6, 'date', 'عرض التاريخ والوقت الحالي', 'date', 1),
 (7, 'cal', 'عرض التقويم', 'cal', 1),
 (8, 'uptime', 'عرض الوقت الذي بقيه النظام شغالاً', 'uptime', 1),
@@ -94,7 +94,7 @@ INSERT INTO `command` (`command_id`, `command_name`, `command_discription`, `com
 CREATE TABLE IF NOT EXISTS `options` (
   `option_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `option` varchar(255) DEFAULT NULL,
-  `option_disc` varchar(500) DEFAULT NULL,
+  `option_desc` varchar(500) DEFAULT NULL,
   `command_command_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`option_id`),
   KEY `fk_options_command1_idx` (`command_command_id`)
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `options` (
 CREATE TABLE IF NOT EXISTS `uses` (
   `uses_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `command` varchar(255) DEFAULT NULL,
-  `command_discription` varchar(500) DEFAULT NULL,
+  `command_description` varchar(500) DEFAULT NULL,
   `command_command_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`uses_id`),
   KEY `fk_uses_command1_idx` (`command_command_id`)
