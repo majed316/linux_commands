@@ -50,13 +50,13 @@
                 echo "<tr>\r\n";
                 echo "<td>" . $commands['command_id'] . "</td>\r\n";
                 echo "<td>" . $commands['command_name'] . "</td>\r\n";
-                echo "<td>" . $commands['command_discription'] . "</td>\r\n";
+                echo "<td>" . $commands['command_description'] . "</td>\r\n";
                 echo "<td dir=ltr>" . $commands['command_form'] . "</td>\r\n";
                 echo "</tr>\r\n";
             }
         }
         echo "</table>\r\n";
-        echo 'DataArray iterations: ' . $iteration //for debugging purpose.
+        echo 'DataArray iterations: ' . $iteration; //for debugging purpose.
 ?>
     </body>
 </html>
