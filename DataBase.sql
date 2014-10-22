@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 10, 2014 at 08:22 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Oct 21, 2014 at 11:31 PM
+-- Server version: 10.0.14-MariaDB-log
+-- PHP Version: 5.6.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `linux`
 --
-CREATE DATABASE IF NOT EXISTS `linux` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `linux`;
 
 -- --------------------------------------------------------
 
@@ -29,10 +27,9 @@ USE `linux`;
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+`cat_id` int(10) unsigned NOT NULL,
+  `name` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category`
@@ -42,7 +39,8 @@ INSERT INTO `category` (`cat_id`, `name`) VALUES
 (1, 'معلومات النظام'),
 (2, 'التعامل مع الملفات'),
 (3, 'تعلم الأوامر'),
-(4, 'البحث');
+(4, 'البحث'),
+(5, 'التعامل مع القرص الصلب ');
 
 -- --------------------------------------------------------
 
@@ -51,14 +49,12 @@ INSERT INTO `category` (`cat_id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `command` (
-  `command_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`command_id` int(10) unsigned NOT NULL,
   `command_name` varchar(45) DEFAULT NULL,
   `command_description` varchar(500) DEFAULT NULL,
   `command_form` varchar(500) DEFAULT NULL,
-  `category_cat_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`command_id`),
-  KEY `fk_command_category_idx` (`category_cat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+  `category_cat_id` int(10) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `command`
@@ -83,7 +79,8 @@ INSERT INTO `command` (`command_id`, `command_name`, `command_description`, `com
 (26, 'grep', 'البحث عن نص أو نمط داخل الملفات', 'grep keyword file', 4),
 (27, 'locate', 'البحث عن الملفات', 'locate filename', 4),
 (28, 'find', 'البحث عن الملفات', 'find -name filename', 4),
-(29, 'updatedb', 'تحديث قاعدة بيانات بجميع أسماء الملفات والأدلة بدءاً من دليل الجذر', 'updatedb', 4);
+(29, 'updatedb', 'تحديث قاعدة بيانات بجميع أسماء الملفات والأدلة بدءاً من دليل الجذر', 'updatedb', 4),
+(30, 'fdisk ', 'عرض أقسام القرص الصلب ', 'fdisk -l ', 5);
 
 -- --------------------------------------------------------
 
@@ -92,13 +89,11 @@ INSERT INTO `command` (`command_id`, `command_name`, `command_description`, `com
 --
 
 CREATE TABLE IF NOT EXISTS `options` (
-  `option_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`option_id` int(10) unsigned NOT NULL,
   `option` varchar(255) DEFAULT NULL,
   `option_desc` varchar(500) DEFAULT NULL,
-  `command_command_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`option_id`),
-  KEY `fk_options_command1_idx` (`command_command_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `command_command_id` int(10) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -107,14 +102,64 @@ CREATE TABLE IF NOT EXISTS `options` (
 --
 
 CREATE TABLE IF NOT EXISTS `uses` (
-  `uses_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`uses_id` int(10) unsigned NOT NULL,
   `command` varchar(255) DEFAULT NULL,
   `command_description` varchar(500) DEFAULT NULL,
-  `command_command_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`uses_id`),
-  KEY `fk_uses_command1_idx` (`command_command_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `command_command_id` int(10) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+ ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `command`
+--
+ALTER TABLE `command`
+ ADD PRIMARY KEY (`command_id`), ADD KEY `fk_command_category_idx` (`category_cat_id`);
+
+--
+-- Indexes for table `options`
+--
+ALTER TABLE `options`
+ ADD PRIMARY KEY (`option_id`), ADD KEY `fk_options_command1_idx` (`command_command_id`);
+
+--
+-- Indexes for table `uses`
+--
+ALTER TABLE `uses`
+ ADD PRIMARY KEY (`uses_id`), ADD KEY `fk_uses_command1_idx` (`command_command_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+MODIFY `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `command`
+--
+ALTER TABLE `command`
+MODIFY `command_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `options`
+--
+ALTER TABLE `options`
+MODIFY `option_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `uses`
+--
+ALTER TABLE `uses`
+MODIFY `uses_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -123,19 +168,19 @@ CREATE TABLE IF NOT EXISTS `uses` (
 -- Constraints for table `command`
 --
 ALTER TABLE `command`
-  ADD CONSTRAINT `fk_command_category` FOREIGN KEY (`category_cat_id`) REFERENCES `category` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `fk_command_category` FOREIGN KEY (`category_cat_id`) REFERENCES `category` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `options`
 --
 ALTER TABLE `options`
-  ADD CONSTRAINT `fk_options_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ADD CONSTRAINT `fk_options_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `uses`
 --
 ALTER TABLE `uses`
-  ADD CONSTRAINT `fk_uses_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ADD CONSTRAINT `fk_uses_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
