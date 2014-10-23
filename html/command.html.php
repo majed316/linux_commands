@@ -57,14 +57,5 @@
                 ?>
             </div>
         </div>
-        <!--
-        <pre>
-            <?php
-            print_r($commandRow);
-            print_r($optionsRows);
-            print_r($usesRows);
-            ?>
-        </pre>
-        -->
     </body>
 </html>
