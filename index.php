@@ -18,5 +18,4 @@ try
     include '../html/error.html.php';
     exit();
 }
-include './html/output.html.php';
-//echo "abdulrahman".'<br>'; 
+include './html/index.html.php';

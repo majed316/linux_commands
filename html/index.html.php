@@ -2,21 +2,10 @@
 <html dir="rtl">
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="/linux/css/styles.css"/>
         <title>
-            OutPut Page
+            TULCR - The Ultimate Linux Commands Reference
         </title>
-        <style>
-            body{
-                width:960px;
-                margin:0 auto;
-            }
-            table, td{
-                border: 1px solid black;
-            }
-            table{
-                width:100%;
-            }
-        </style>
     </head>
     <body>
         <?php
@@ -41,15 +30,13 @@
             echo "</td>\r\n";
             echo "</tr>\r\n";
             echo "<tr>\r\n";
-            echo "<td>id</td>\r\n";
             echo "<td>اسم الأمر</td>\r\n";
             echo "<td>وصف الأمر</td>\r\n";
             echo "<td>صيغة الأمر</td>\r\n";
             echo "</tr>\r\n";
             foreach($cat['commands'] as $commands){
                 echo "<tr>\r\n";
-                echo "<td>" . $commands['command_id'] . "</td>\r\n";
-                echo "<td>" . $commands['command_name'] . "</td>\r\n";
+                echo "<td><a href=command.php?command_id={$commands['command_id']}> {$commands['command_name']}</a></td?>\r\n";
                 echo "<td>" . $commands['command_description'] . "</td>\r\n";
                 echo "<td dir=ltr>" . $commands['command_form'] . "</td>\r\n";
                 echo "</tr>\r\n";

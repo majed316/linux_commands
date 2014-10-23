@@ -1,12 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 21, 2014 at 11:31 PM
--- Server version: 10.0.14-MariaDB-log
--- PHP Version: 5.6.2
+-- Host: 127.0.0.1
+-- Generation Time: Oct 23, 2014 at 07:01 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `linux`
 --
+CREATE DATABASE IF NOT EXISTS `linux` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `linux`;
 
 -- --------------------------------------------------------
 
@@ -26,10 +29,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
-`cat_id` int(10) unsigned NOT NULL,
-  `name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cat_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `category`
@@ -48,13 +53,16 @@ INSERT INTO `category` (`cat_id`, `name`) VALUES
 -- Table structure for table `command`
 --
 
+DROP TABLE IF EXISTS `command`;
 CREATE TABLE IF NOT EXISTS `command` (
-`command_id` int(10) unsigned NOT NULL,
+  `command_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `command_name` varchar(45) DEFAULT NULL,
   `command_description` varchar(500) DEFAULT NULL,
   `command_form` varchar(500) DEFAULT NULL,
-  `category_cat_id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+  `category_cat_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`command_id`),
+  KEY `fk_command_category_idx` (`category_cat_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `command`
@@ -88,12 +96,45 @@ INSERT INTO `command` (`command_id`, `command_name`, `command_description`, `com
 -- Table structure for table `options`
 --
 
+DROP TABLE IF EXISTS `options`;
 CREATE TABLE IF NOT EXISTS `options` (
-`option_id` int(10) unsigned NOT NULL,
+  `option_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `option` varchar(255) DEFAULT NULL,
   `option_desc` varchar(500) DEFAULT NULL,
-  `command_command_id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `command_command_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`option_id`),
+  KEY `fk_options_command1_idx` (`command_command_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+
+--
+-- Dumping data for table `options`
+--
+
+INSERT INTO `options` (`option_id`, `option`, `option_desc`, `command_command_id`) VALUES
+(1, 'date -r [file]', 'عرض تاريخ ووقت آخر تعديل للملف', 6),
+(2, 'date -d "12/2/2014"', 'إعطاء التاريخ على شكل نص، وإعادة التاريخ بتنسيق تاريخي', 6),
+(3, 'date -d "next mon"', 'معرفة التاريخ النسبي، في هذه الحالة نريد معرفة التاريخ لآخر يوم إثنين', 6),
+(4, 'date -s "Sun May 20 21:00:00 AST 2014"', 'إعداد التاريخ والوقت في النظام', 6),
+(5, 'date -u', 'عرض الوقت والتاريخ العالمي، جرينتش', 6),
+(6, 'date +%a', 'إظهار اسم اليوم بشكل مختصر، مثل Thu', 6),
+(7, 'date +%A', 'عرض اسم اليوم بشكل كامل، Thursday', 6),
+(8, 'date +%b', 'عرض اسم الشهر بشكل مختصر، مثل Feb', 6),
+(9, 'date +%B', 'عرض اسم الشهر بشكل كامل، مثل February', 6),
+(10, 'date +%d', 'عرض رقم اليوم في الشهر', 6),
+(11, 'date +%D', 'عرض التاريخ فقط بالشكل المختصر، مثل 02/07/13', 6),
+(12, 'date +%F', 'عرض التاريخ فقط مع إظهار السنة بالكامل، مثل 07-02-2013', 6),
+(13, 'date +%H', 'عرض الوقت بنظام 24 ساعة', 6),
+(14, 'date +%I', 'عرض الوقت بنظام 12 ساعة', 6),
+(15, 'date +%j', 'عرض رقم اليوم في السنة', 6),
+(16, 'date +%m', 'عرض رقم الشهر', 6),
+(17, 'date +%M', 'عرض الدقائق', 6),
+(18, 'date +%S', 'عرض الثواني', 6),
+(19, 'date +%N', 'عرض النانوثانية', 6),
+(20, 'date +%T', 'عرض الوقت مفصول بأعمدة، مثل 23:44:17، بنظام 24 ساعة', 6),
+(21, 'date +%u', 'عرض رقم اليوم في الاسبوع', 6),
+(22, 'date +%U', 'عرض رقم الاسبوع في السنة', 6),
+(23, 'date +%Y', 'عرض السنة بالشكل الكامل، مثل 2014', 6),
+(24, 'date +%Z', 'عرض المنطقة الزمنية', 6);
 
 -- --------------------------------------------------------
 
@@ -101,65 +142,25 @@ CREATE TABLE IF NOT EXISTS `options` (
 -- Table structure for table `uses`
 --
 
+DROP TABLE IF EXISTS `uses`;
 CREATE TABLE IF NOT EXISTS `uses` (
-`uses_id` int(10) unsigned NOT NULL,
+  `uses_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `command` varchar(255) DEFAULT NULL,
   `command_description` varchar(500) DEFAULT NULL,
-  `command_command_id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `command_command_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`uses_id`),
+  KEY `fk_uses_command1_idx` (`command_command_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `uses`
 --
 
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
- ADD PRIMARY KEY (`cat_id`);
+INSERT INTO `uses` (`uses_id`, `command`, `command_description`, `command_command_id`) VALUES
+(1, 'date -d "[date]" +%A', 'عرض اسم اليوم في تاريخ معين، فقط استبدل [date] بالتاريخ مثل، date -d "22/12/2014" +%A', 6),
+(2, 'date -d "[keyword]" +%D', 'لمعرفة التاريخ في يوم معين، عليك استبدال keyword بكلمة تدل على التاريخ النسبي، كالأمثلة التالية:\r\n"next mon":	 الإثنين القادم\r\n"last mon":	 الاثنين السابق\r\n"last week": 	الاسبوع الفائت\r\n"last year":	السنة الفائتة\r\n"1 day ago":	اليوم المنصرم\r\n"yesterday":	أمس\r\n"1 month ago":	الشهر الماضي\r\n"1 year ago":	السنة الماضية\r\n"next year":	السنة القادمة\r\n"tomorrow":	غداً', 6),
+(3, 'touch filename-`date +%F`', 'إنشاء ملف نصي مع إلحاق تاريخ  إنشاء الملف باسم الملف', 6);
 
---
--- Indexes for table `command`
---
-ALTER TABLE `command`
- ADD PRIMARY KEY (`command_id`), ADD KEY `fk_command_category_idx` (`category_cat_id`);
-
---
--- Indexes for table `options`
---
-ALTER TABLE `options`
- ADD PRIMARY KEY (`option_id`), ADD KEY `fk_options_command1_idx` (`command_command_id`);
-
---
--- Indexes for table `uses`
---
-ALTER TABLE `uses`
- ADD PRIMARY KEY (`uses_id`), ADD KEY `fk_uses_command1_idx` (`command_command_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-MODIFY `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `command`
---
-ALTER TABLE `command`
-MODIFY `command_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `options`
---
-ALTER TABLE `options`
-MODIFY `option_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `uses`
---
-ALTER TABLE `uses`
-MODIFY `uses_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -168,19 +169,20 @@ MODIFY `uses_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- Constraints for table `command`
 --
 ALTER TABLE `command`
-ADD CONSTRAINT `fk_command_category` FOREIGN KEY (`category_cat_id`) REFERENCES `category` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_command_category` FOREIGN KEY (`category_cat_id`) REFERENCES `category` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `options`
 --
 ALTER TABLE `options`
-ADD CONSTRAINT `fk_options_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_options_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `uses`
 --
 ALTER TABLE `uses`
-ADD CONSTRAINT `fk_uses_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_uses_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
