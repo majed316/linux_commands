@@ -30,6 +30,24 @@ function returnValue() {
     return text;
 }
 
+function returnValidatedData() {
+    var fields = document.getElementsByTagName("input");
+    var catId = document.getElementById("cats").value;
+    var text = '';
+    for(var i = 0; i < fields.length-1; i++){
+        if(fields[i].value !== "" && fields[i+1].value !== "" && fields[i+2].value !== ""){
+            text += fields[i].value + "|||" + fields[i+1].value + "|||" + fields[i+2].value + "|||" + catId + "\n";
+        }
+        i += 2;
+    }
+    return text;
+}
+
+function onlyText(){
+    var fields = document.getElementsByTagName("input");
+    alert(fields.length);
+}
+
 function showInner(){ // <-- for debugging purposes.
     var tbl = document.getElementById("tblbdy");
     alert(tbl.innerHTML);
@@ -59,5 +77,5 @@ function returnCat(){
 }
 
 function showValue(){
-    alert(returnValue());
+    alert(returnValidatedData());
 }
