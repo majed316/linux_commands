@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html dir="rtl">
     <head>
@@ -8,6 +11,11 @@
         </title>
     </head>
     <body>
+        <?php
+        if(isset($_SESSION['admin'])){
+            echo "Administrative mode <a href='logout.php'>logout</a>"; // <-- later you should move this line to header.php
+        }
+        ?>
         <?php
         $iteration = 0;
         foreach ($catRows as $catKey=>$catValue){
@@ -44,6 +52,9 @@
         }
         echo "</table>\r\n";
         echo 'DataArray iterations: ' . $iteration; //for debugging purpose.
+        if(isset($_SESSION['admin'])){
+            echo "<br> {$_SESSION['admin']}";
+        }
 ?>
     </body>
 </html>

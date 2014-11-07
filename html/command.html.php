@@ -1,5 +1,8 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
-<html>
+<html> <!-- no need to use rtl option here because it's enabled in css in <td> tag level -->
     <head>
         <meta charset="utf-8">
         <title>command details</title>
@@ -37,6 +40,11 @@
         </style>
     </head>
     <body>
+        <?php
+        if(isset($_SESSION['admin'])){
+            echo "<a href='logout.php'>logout</a>"; // <-- later you should move this line to header.php
+        }
+        ?>
         <div id="command">
             <H2><?php echo $commandRow[0]['command_name'] ?></H2>
             <p id="Mdesc"><?php echo $commandRow[0]['command_description'] ?></p>
