@@ -2,6 +2,7 @@
 include './inc/db.inc.php';
 if(isset($_GET['commandname'])){
 	$query = "DELETE  FROM command WHERE command_id = " . $_GET['commandname'];
+	addslashes($_get['commandname']);
 	$result= $db->query($query);
 	//this -if- for result after delete ... 
 	if($result){
