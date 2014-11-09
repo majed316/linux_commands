@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
     <head>
         <meta charset="utf-8">
         <title>
-            Error Page
+            Message Page
         </title>
     </head>
     <body>
         <p>
-            <?php echo $error ?>
+            <?php echo $message ?>
         </p>
     </body>
 </html>

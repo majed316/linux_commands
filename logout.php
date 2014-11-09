@@ -1,5 +1,5 @@
 <?php
 session_start();
 unset($_SESSION['admin']);
-header( 'Location: http://localhost/linux/' ) ;
+header( 'Location: http://localhost/linux_commands/' ) ;
 ?>
