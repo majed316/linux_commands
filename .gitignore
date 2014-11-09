@@ -1,2 +1,4 @@
 .meta/
 /inc/config.local.php
+.directory
+html/.directory
