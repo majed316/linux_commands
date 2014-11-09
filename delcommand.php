@@ -9,7 +9,7 @@
  */
 include './inc/db.inc.php';
 if(isset($_GET['command_id'])){
-	$query = "DELETE  FROM command WHERE command_id = " . $_GET['command_id'];
+	$query = "DELETE  FROM command WHERE command_id = " . addslashes($_GET['command_id']);
 	$result= $db->query($query);
 	//this -if- for result after delete ... 
 	if($result){
