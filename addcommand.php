@@ -31,7 +31,7 @@ try
         </title>
     </head>
     <body>
-        <form id="form1" action="toDataBase.php" method="post">
+        <form id="form1" action="addcommand.php" method="post">
             اختر التصنيف:
             <select id="cats" name="cat">
                 <?php
@@ -72,7 +72,7 @@ try
             <tfoot>
                 <tr>
                     <td colspan="3">
-                        <input type="submit" id="submit" name="Send" value="حفظ" onClick="post('toDatabase.php', returnValidatedData(), 'POST' )">
+                        <input type="submit" id="submit" name="Send" value="حفظ" onClick="post('addcommand.php', returnValidatedData(), 'POST' )">
                     </td>
                 </tr>
             </tfoot>
