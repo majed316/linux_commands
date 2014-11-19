@@ -11,10 +11,16 @@ and open the template in the editor.
 body{
     width:960px;
     margin:0 auto;
+    
 }
 table, td{
     border: 1px solid black;
 }
 table{
     width:100%;
+}
+
+#search{
+   
+
 }
