@@ -6,6 +6,8 @@ session_start();
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/linux_commands/css/styles.css"/>
+        <script src="./search_php.js"></script>
+        <?php include './Ajax_search.php';?> 
         <title>
             TULCR - The Ultimate Linux Commands Reference
         </title>
