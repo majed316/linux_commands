@@ -7,5 +7,8 @@
                success: function(result){
                     $("#result").html(result);
                 }
+                compelete:function({
+                	$("#result").css
+                })
             });
         }

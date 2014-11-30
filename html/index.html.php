@@ -6,13 +6,16 @@ session_start();
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/linux_commands/css/styles.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
         <script src="./search_php.js"></script>
-        <?php include './Ajax_search.php';?> 
-        <title>
+         <title>
             TULCR - The Ultimate Linux Commands Reference
         </title>
     </head>
     <body>
+    	<input type="text" id="box" onkeyup="getAjxaData()"/> 
+    	
+        <div id="result"></div>
         <?php
         if(isset($_SESSION['admin'])){
             $admin = TRUE;
@@ -67,5 +70,6 @@ session_start();
 echo "</table>\r\n";
         echo 'DataArray iterations: ' . $iteration; //for debugging purpose.
 ?>
+
     </body>
 </html>
