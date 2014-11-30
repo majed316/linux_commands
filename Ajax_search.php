@@ -1,19 +1,4 @@
-<html>
-    <head>
-        <meta charset="utf-8"/> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
-        <script src="search_php.js"></script>  
-        <title>
-            search command 
-        </title>
-    </head>
-   <body>
-   	<input type="text" id="box" onkeyup="getAjxaData()" />
-   	<div id="result">
-   		
-   	</div>
-   </body>
-</html>
+
 <?php 
  include './inc/db.inc.php' ; 
 if(isset($_POST['term']) && !empty($_POST['term'])){
