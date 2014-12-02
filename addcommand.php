@@ -10,6 +10,7 @@
  * 5- In case javascript submited the form, then collect all the <input> data and validate it, then seralize it.    DONE
  * 6- In case html submitted the form, just send the form as usual.                                                 DONE
  * 7- loop through the data recived and insert it in database in one big submition using PDO->excute();             DONE
+ * 8- Test if the admin variable is set or not, and according to that the page will be shown or not.
  */
 include './inc/db.inc.php';
 try

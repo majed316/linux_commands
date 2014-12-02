@@ -7,6 +7,8 @@
  * 2- Retrieve the command from database.
  * 3- Create form consist of three fields (command_name, command_desc, command_syntax), and one hiden field for command_id.
  * 4- When submiting the form query the database with update statement to update the the command according to its id.
+ * 5- Test if the admin variable is set or not, and according to that the page will be shown or not.
+ * 6- Actully you may use ajax to edit the command while you are in the index.html.php page.
  */
 include './inc/db.inc.php';
 if (!empty($_REQUEST)) {                             //there is argments passed.
