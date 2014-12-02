@@ -23,7 +23,7 @@ if(isset($_POST['term']) && !empty($_POST['term'])){
             //echo "<a href='{$row['command_name']}'>{$row['command_name']}</a>".'<br>';
             //echo "<a href='{$row['command_description']}'>{$row['command_description']}</a>".'<br>';
              //echo $row['command_description'].'<br>';
-            echo "<a href=command.php?command_id={$row['command_id']}>{$row['command_name']}</a>\r\n";
+            echo "<a href=command.php?command_id={$row['command_id']}>{$row['command_name']}</a>\r\n".'<br>';
         }    
     }
 }
