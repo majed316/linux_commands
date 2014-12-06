@@ -12,19 +12,20 @@
 if(isset($_POST['term']) && !empty($_POST['term'])){
     $term = $_POST['term'];
     $s_term = addslashes($term);
-    $sql = "SELECT * FROM command WHERE command_name LIKE '%{$s_term}%' ";
+    $sql = "SELECT * FROM command WHERE command_name LIKE '%{$s_term}%' OR command_description LIKE '%{$s_term}%' ";
     $ste = $db->query($sql);
     $result = $ste->fetchall(); 
     
     if(count($result) < 1){
         echo "No results found";
     }  else {
+        echo '<ul>';
         foreach ($result as $row){
             //echo "<a href='{$row['command_name']}'>{$row['command_name']}</a>".'<br>';
             //echo "<a href='{$row['command_description']}'>{$row['command_description']}</a>".'<br>';
              //echo $row['command_description'].'<br>';
-            echo "<a href=command.php?command_id={$row['command_id']}>{$row['command_name']}</a>\r\n".'<br>';
-        }    
+            echo "<a href=command.php?command_id={$row['command_id']}><li>{$row['command_name']} {$row['command_description']}</li></a>\r\n".'<br>';
+        } echo '</ul>';  
     }
 }
 $db = null ; 

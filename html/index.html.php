@@ -18,7 +18,7 @@ session_start();
         </title>
     </head>
     <body>
-        <input type="text" id="box" onkeyup="getAjxaData()" placeholder="أبحث"/> 
+        <input type="text" id="box" onkeyup="getAjxaData()" placeholder="أبحث" /> 
 
         <div id="result"></div>
         <?php
