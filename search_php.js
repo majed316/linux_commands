@@ -11,7 +11,6 @@ if(value.length > minlength){
             $("#result").html(result);
             $("#result").css("border","solid black 1px");
                 }        
-        
         });
         } 
 }
