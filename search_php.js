@@ -12,5 +12,7 @@ if(value.length > minlength){
             $("#result").css("border","solid black 1px");
                 }        
         });
-        } 
+        } else{
+            $("#result").html("");
+        }
 }
