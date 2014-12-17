@@ -1,18 +1,17 @@
 function getAjxaData(){
 var data = $("#box").val();
-var minlength = "2";
-var value = $("#box").val();
-if(value.length > minlength){
+if(data.length > 2){
         $.ajax({
         type : "post",
         url : "ajax_search.php",
         data : "term=" + data,
         success : function(result){
             $("#result").html(result);
-            $("#result").css("border","solid black 1px");
+            $("#result").css("display","block");
                 }        
         });
         } else{
             $("#result").html("");
+            $("#result").css("display","none");
         }
 }

@@ -17,9 +17,9 @@ if(isset($_POST['term']) && !empty($_POST['term'])){
     $result = $ste->fetchall(); 
     
     if(count($result) < 1){
-        echo "No results found";
+        echo "لم يتم العثور على نتائج";
     }  else {
-        echo '<ul id="ul">';
+        echo '<ul>';
         foreach ($result as $row){
             //echo "<a href='{$row['command_name']}'>{$row['command_name']}</a>".'<br>';
             //echo "<a href='{$row['command_description']}'>{$row['command_description']}</a>".'<br>';

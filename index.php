@@ -5,6 +5,7 @@
  * entry file
  */
 include './inc/db.inc.php';
+include './inc/func.php';
 try
 {
     $catSql = 'SELECT * FROM category';

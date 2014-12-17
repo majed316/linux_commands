@@ -4,78 +4,51 @@
  * @Author : GMajedli@gmail.com
  * 
  */
-session_start();
+include 'header.html.php';
+$iteration = 0;
+foreach ($catRows as $catKey => $catValue) {
+    $data[$catKey] = $catValue;
+    foreach ($commandRows as $key => $value) {
+        if ($catValue['cat_id'] == $value['category_cat_id']) {
+            $data[$catKey]['commands'][$key] = $value;
+            unset($commandRows[$key]);
+        }
+        $iteration += 1; //for optimization purposes.
+    }
+}
 ?>
-<!DOCTYPE html>
-<html dir="rtl">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="/linux_commands/css/styles.css"/>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="search_php.js"></script>
-        <title>
-            TULCR - The Ultimate Linux Commands Reference
-        </title>
-    </head>
-    <body>
-        <input type="text" id="box" onkeyup="getAjxaData()" placeholder="أبحث" /> 
-
-        <div id="result"></div>
-        <?php
-        if (isset($_SESSION['admin'])) {
-            $admin = TRUE;
-            $span = 4;
-            echo "<a href='logout.php'>تسجيل خروج الأدمن</a><br>\n"; // <--| later you should move these three lines to header.php
-            echo "<a href='addcommand.php'>إضافة أمر</a><br>\n"; // <------------|
-            //echo "<a href='addcat.php'>إضافة تصنيف</a><br>\n"; // <--------------|
-            echo "<a href='search.php'>بحث عن أمر</a><br>\n";
-        } else {
-            $admin = FALSE;
-            $span = 3;
-        }
-        ?>
-        <?php
-        $iteration = 0;
-        foreach ($catRows as $catKey => $catValue) {
-            $data[$catKey] = $catValue;
-            foreach ($commandRows as $key => $value) {
-                if ($catValue['cat_id'] == $value['category_cat_id']) {
-                    $data[$catKey]['commands'][$key] = $value;
-                    unset($commandRows[$key]);
+    <?php
+    echo "<div class='row'>";
+    foreach ($data as $cat) {
+        $rowsCount = 0;
+        if (isset($cat['commands'])) {
+            echo "<div class='col-xs-12 col-sm-6 col-lg-4' id='column'>";
+            echo "<div class='panel panel-default'>";
+            echo "<div class='panel-heading'> {$cat['name']}</div>";
+            echo "<table class='table table-hover'>";
+            foreach ($cat['commands'] as $commands) {
+                if ($rowsCount > 3){
+                    break;
+                }  else {
+                    $rowsCount = $rowsCount + 1;
                 }
-                $iteration += 1; //for optimization purposes.
+                echo "<tr>";
+                echo "<td><a href=command.php?command_id={$commands['command_id']}> {$commands['command_name']}</a></td>";
+                if ($admin){
+                    echo "<td><a href='delcommand.php?command_id={$commands['command_id']}'><img src='img/delete.png'></a> <a href='editcommand.php?command_id={$commands['command_id']}'><img src='img/edit.png'></a></td>";
+                }
+                echo "<td>". _limit($commands['command_description'], 35, '...'). "</td>";
+                echo "<td dir='ltr'>";
+                echo _limit($commands['command_form'], 10);
+                echo "</td>";
+                echo "</tr>";
             }
         }
-        ?>
-        <table>
-            <?php
-            foreach ($data as $cat) {
-                if (isset($cat['commands'])) {
-                    echo "<tr>\r\n";
-                    echo "<td colspan=$span>\r\n";
-                    echo "<H1>" /* . $cat['cat_id'] . " :: " */ . $cat['name'] . "</H1>";
-                    echo "</td>\r\n";
-                    echo "</tr>\r\n";
-                    echo "<tr>\r\n";
-                    echo "<td>اسم الأمر</td>\r\n";
-                    if ($admin)
-                        echo "<td></td>\r\n";
-                    echo "<td>وصف الأمر</td>\r\n";
-                    echo "<td>صيغة الأمر</td>\r\n";
-                    echo "</tr>\r\n";
-                    foreach ($cat['commands'] as $commands) {
-                        echo "<tr>\r\n";
-                        echo "<td><a href=command.php?command_id={$commands['command_id']}> {$commands['command_name']}</a></td?>\r\n";
-                        if ($admin)
-                            echo "<td><a href='delcommand.php?command_id={$commands['command_id']}'><img src='img/delete.png'></a> <a href='editcommand.php?command_id={$commands['command_id']}'><img src='img/edit.png'></a></td>\r\n";
-                        echo "<td>" . $commands['command_description'] . "</td>\r\n";
-                        echo "<td dir=ltr>" . $commands['command_form'] . "</td>\r\n";
-                        echo "</tr>\r\n";
-                    }
-                }
-            }
-            echo "</table>\r\n";
-            echo 'DataArray iterations: ' . $iteration; //for debugging purpose.
-            ?>
-    </body>
-</html>
+            echo "</table>"; //end of panel-body div
+            echo "</div>"; //end of panel div
+            echo "</div>"; //end of column div
+    }
+    echo "</div>"; //end of row div
+    //echo 'DataArray iterations: ' . $iteration . "\n"; //for debugging purpose.
+    include 'footer.html.php';
+    ?>

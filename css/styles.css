@@ -8,32 +8,18 @@ and open the template in the editor.
     Author     : Majed
 */
 
-body{
-    width:960px;
-    margin:0 auto;
 
-}
-table, td{
-    border: 1px solid black;
-}
-table{
-    width:100%;
-}
 #result{
     position: absolute;
-    width:200px;
+    width:auto;
     background-color: white;
-    
-    
+    z-index: 9999;
 }
 #box{
-    width:200px;
-    
-    
+    width: 100%;
 }
 li:hover {
     background-color:skyblue; 
-    
 }
 li:visited{
     color: wheat;
@@ -42,3 +28,29 @@ li{
     list-style: none;
 }
 
+H2, H3, #Mdesc{
+    text-align:center;
+}
+.command{
+    direction: ltr;
+}
+pre{
+    white-space:pre-wrap;
+}
+
+@media (min-width: 1200px){
+    #column{
+        min-height: 210px;
+    }
+}
+#logoContainer{
+    float:right;
+}
+#logo{
+    width: 100px;
+    display: inline-block;
+}
+#search-button{
+    width: 40px;
+    height: 36px;
+}
