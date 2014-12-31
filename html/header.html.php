@@ -17,7 +17,7 @@ session_start();
         <?php
         include 'nav.html.php';
         ?>
-        <div class="container">
+        <div id="wraper" class="container">
             <?php
             if (isset($_SESSION['admin'])) {
                 $admin = TRUE;

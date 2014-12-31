@@ -1,22 +1,31 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : 22/10/2014, 07:26:31 ص
     Author     : Majed
 */
 
-
+html, body{
+    height: 100%;
+    margin:0;
+}
+#form-group{
+    position: relative;
+}
 #result{
-    position: absolute;
+    position:absolute;
     width:auto;
     background-color: white;
     z-index: 9999;
 }
 #box{
-    width: 100%;
+    width: 214px;
+    border:none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    box-shadow: none;
+    display: inline-block;
+}
+#box:focus{
+    border-bottom: 1px solid #0099cc;
 }
 li:hover {
     background-color:skyblue; 
@@ -39,8 +48,24 @@ pre{
 }
 
 @media (min-width: 1200px){
-    #column{
-        min-height: 210px;
+    .column{
+        min-height: 359px !important;
+    }
+    .pbody{
+        min-height: 198px !important;
+    }
+    #nav-back{
+        position: relative;
+    }
+    #logo-box{
+        position: relative;
+        top: 50px;
+    }
+    #links-navbar{
+        padding-right: 0px;
+    }
+    #links{
+        padding-right: 0px;
     }
 }
 #logoContainer{
@@ -53,4 +78,60 @@ pre{
 #search-button{
     width: 40px;
     height: 36px;
+}
+.cat_image{
+    height: 53px;
+    width: 60px;
+}
+.cat_names{
+    display: inline;
+}
+.cat_more{
+    margin: 5px;
+    text-align: left;
+}
+body{
+    background: url("../img/tux.png") center 150px no-repeat;
+    background-attachment: fixed;
+    background-size: 40%;
+}
+.back{
+    background-color: transparent!important;
+}
+.search_icon{
+    display:inline;
+}
+.links{
+    color: #4286BD !important;
+    text-align: right;
+}
+
+#nav-back{
+    min-height: 150px;
+    background-image: url(../img/bar.png), url(../img/bar_back.png);
+    background-position: center bottom, left top;
+    background-repeat: no-repeat, repeat;
+}
+#logo-img{
+    vertical-align: middle
+}
+#form-bar{
+    border:0px;
+}
+footer{
+    background-color: #1e0a0c;
+    text-align: center;
+    color: #d1d1d1;
+}
+#wraper{
+    min-height: 100%;
+    margin-bottom: -90px;
+}
+#wraper:after{
+    content: "";
+    display: block;
+}
+
+#wraper:after, footer{
+    height: 90px;
 }
