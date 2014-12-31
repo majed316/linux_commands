@@ -7,7 +7,8 @@ $query = $db->query($sql);
 $result = $query->fetchall();
 foreach ($result as $row ){
     echo $row['command_name'].'<br>'; 
-}}
+}
+}
 ?>
 
 
