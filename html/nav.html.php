@@ -1,8 +1,8 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" id="nav-back" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header navbar-right">
-        <a class="navbar-brand" href="#"><h3 style="display: inline">لينوكس باور</h3></a>
+    <div id="logo-box" class="navbar-header navbar-right">
+        <a class="navbar-brand" href="#"><h3 style="display: inline"><img id="logo-img" class="img-responsive" src="./img/logo.png" ></h3></a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#links-navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -17,8 +17,8 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right" id="links-navbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">عن لينوكس<span class="sr-only">(current)</span></a></li>
+      <ul id="links" class="nav navbar-nav">
+        <li><a href="#">عن لينوكس<span class="sr-only">(current)</span></a></li>
         <li><a href="#">دروس الشل</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">مدونة لينوكس<span class="caret"></span></a>
@@ -35,10 +35,11 @@
     </div><!-- /.navbar-collapse -->
     
     <div class="collapse navbar-collapse" id="search-navbar">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" id="box" onkeyup="getAjxaData()" class="form-control" placeholder="أبحث">
-          <div id="result" class="well well-sm" style="display: none;"></div>
+      <form id="form-bar" class="navbar-form navbar-left" role="search">
+        <div id="form-group" class="form-group">
+          <input type="text" id="box" onkeyup="getAjxaData()" onblur="//hideBox()" class="form-control" placeholder="أبـحـث عــن أمــر" autocomplete="off">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          <ul id="result" class="dropdown-menu" role="menu" style="display: none;"></ul>
         </div>
         <!--- <button type="submit" class="btn btn-default">بحث</button> -->
       </form>

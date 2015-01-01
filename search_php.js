@@ -1,17 +1,22 @@
-function getAjxaData(){
-var data = $("#box").val();
-if(data.length > 2){
+function getAjxaData() {
+    var data = $("#box").val();
+    if (data.length > 2) {
         $.ajax({
-        type : "post",
-        url : "ajax_search.php",
-        data : "term=" + data,
-        success : function(result){
-            $("#result").html(result);
-            $("#result").css("display","block");
-                }        
+            type: "post",
+            url: "ajax_search.php",
+            data: "term=" + data,
+            success: function(result) {
+                $("#result").html(result);
+                $("#result").css("display", "block");
+            }
         });
-        } else{
-            $("#result").html("");
-            $("#result").css("display","none");
-        }
+    } else {
+        $("#result").html("");
+        $("#result").css("display", "none");
+    }
+}
+
+function hideBox() {
+    $("#result").html("");
+    $("#result").css("display", "none");
 }

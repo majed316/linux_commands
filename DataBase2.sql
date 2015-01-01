@@ -3,11 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2014 at 07:01 AM
+-- Generation Time: Dec 31, 2014 at 01:39 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -20,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `linux`
 --
-CREATE DATABASE IF NOT EXISTS `linux` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `linux`;
 
 -- --------------------------------------------------------
 
@@ -33,19 +30,22 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
+  `image` tinytext NOT NULL,
+  `cat_color` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`cat_id`, `name`) VALUES
-(1, 'معلومات النظام'),
-(2, 'التعامل مع الملفات'),
-(3, 'تعلم الأوامر'),
-(4, 'البحث'),
-(5, 'التعامل مع القرص الصلب ');
+INSERT INTO `category` (`cat_id`, `name`, `image`, `cat_color`) VALUES
+(1, 'معلومات النظام', 'systeminfo.png', 6671554),
+(2, 'التعامل مع الملفات', 'files.png', 13135472),
+(3, 'تعلم الأوامر', 'commands.png', 6671501),
+(4, 'البحث', 'search.png', 8349132),
+(5, 'التعامل مع القرص الصلب ', 'harddisk.png', 4084131),
+(6, 'الشبكات', 'networks.png', 1393006);
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `command` (
   `category_cat_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`command_id`),
   KEY `fk_command_category_idx` (`category_cat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `command`
@@ -78,17 +78,34 @@ INSERT INTO `command` (`command_id`, `command_name`, `command_description`, `com
 (12, 'cd', 'تغيير الدليل الحالي', 'cd dir', 2),
 (13, 'rm', 'حذف الملفات والأدلة', 'rm [dir|file]', 2),
 (14, 'cp', 'نسخ الملفات والأدلة', 'cp file1 file2', 2),
-(15, 'mv', 'نقل الملفات والأدلة', 'mv [file|dir] destination', 2),
 (16, 'apropos', 'البحث عن أمر معين بوصفه', 'apropos command', 3),
 (17, 'man', 'عرض صفحة تعليمات الأوامر', 'man command', 3),
 (18, 'which', 'عرض المسار الكامل لأمر معين', 'which command', 3),
-(19, 'time', 'عرض زمن التنفيذ لأمر معين', 'time command', 3),
-(20, 'whereis', 'عرض جميع الأماكن المحتملة للملف التنفيذي للأمر', 'whereis command', 3),
 (26, 'grep', 'البحث عن نص أو نمط داخل الملفات', 'grep keyword file', 4),
 (27, 'locate', 'البحث عن الملفات', 'locate filename', 4),
-(28, 'find', 'البحث عن الملفات', 'find -name filename', 4),
 (29, 'updatedb', 'تحديث قاعدة بيانات بجميع أسماء الملفات والأدلة بدءاً من دليل الجذر', 'updatedb', 4),
-(30, 'fdisk ', 'عرض أقسام القرص الصلب ', 'fdisk -l ', 5);
+(30, 'fdisk ', 'عرض أقسام القرص الصلب ', 'fdisk -l ', 5),
+(31, 'ifconfig', 'عرض معلومات بطاقة الشبكات وعنوان الشبكة', 'ifconfig', 6),
+(32, 'mv', 'نقل الملفات والأدلة', 'mv [file|dir] destination', 2),
+(33, 'pwd', 'عرض مسار الدليل المتواجد فيه حالياً', 'pwd', 2),
+(34, 'mkdir', 'إنشاء مجلد جديد', 'mkdir [dirname]', 2),
+(35, 'rmdir', 'حذف مجلد', 'rmdir [dirname]', 2),
+(37, 'ngix', 'أمر يستخدم لمراقبة الشبكة', 'ngix netCard', 1),
+(39, 'whatis', 'عرض ملخص من سطر واحد يشرح وظيفة الأمر', 'whatis command', 3),
+(40, 'info', 'عرض معلومات تفصيلية عن أمر معين', 'info command', 3),
+(41, 'whereis', 'تحديد مكان الملف التنفيذي والكود المصدري وملف التعليمات التابعة لأمر معين', 'whereis command', 3),
+(42, 'ps', 'عرض كافة العمليات والبرامج التي تعمل في الجهاز', 'ps', 1),
+(43, 'kill', 'إنهاء أي عملية عن طريق رقم التعريف الخاص بها', 'kill pid', 1),
+(44, 'top', 'عرض العمليات التي تعمل على الجهاز بشكل وتحديثها بشكل آني', 'top', 1),
+(45, 'find', 'البحث عن الملفات والمجلدات', 'find keyword', 4),
+(46, 'iwconfig', 'عرض معلومات بطاقات الشبكة اللاسلكية', 'iwconfig', 6),
+(47, 'ping', 'للتأكد من اتصال طرف بعيد بالشبكة كموقع أو عنوان ', 'ping www.website.com', 6),
+(48, 'ifup', 'يستخدم للتنسيط بطاقة الشبكة', 'ifup eth0', 6),
+(49, 'ifdown', 'يستخدم لتعطيل بطاقة الشبكة', 'ifdown eth0', 6),
+(50, 'df', 'عرض أحجام أقسام القرص الصلب', 'df', 5),
+(51, 'mount', 'توصيل وحدة تخزين خارجية بالنظام', 'mount device dir', 5),
+(52, 'du', 'عرض حجم الملفات والمجلدات الموجودة في مجلد معين', 'du dir', 5),
+(53, 'dd', 'لعمل استنساخ من قرص إلى قرص آخر', 'dd disk disk', 5);
 
 -- --------------------------------------------------------
 
@@ -182,7 +199,6 @@ ALTER TABLE `options`
 --
 ALTER TABLE `uses`
   ADD CONSTRAINT `fk_uses_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

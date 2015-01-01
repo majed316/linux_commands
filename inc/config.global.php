@@ -7,3 +7,4 @@
  */
 
  include 'config.local.php';
+$images_folder = "images/";

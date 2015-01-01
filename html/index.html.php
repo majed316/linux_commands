@@ -22,10 +22,12 @@ foreach ($catRows as $catKey => $catValue) {
     foreach ($data as $cat) {
         $rowsCount = 0;
         if (isset($cat['commands'])) {
-            echo "<div class='col-xs-12 col-sm-6 col-lg-4' id='column'>";
-            echo "<div class='panel panel-default'>";
-            echo "<div class='panel-heading'> {$cat['name']}</div>";
-            echo "<table class='table table-hover'>";
+            echo "<div class='col-xs-12 col-sm-6 col-lg-4 column'>";
+            echo "<div class='panel panel-default back'>";
+            $color = dechex($cat['cat_color']);
+            echo "<div class='panel-heading'><img class='cat_image' src='$images_folder{$cat['image']}'><h3 style='color: #$color' class='cat_names'>{$cat['name']}</h3></div>";
+            //echo "<div class='panel-body'>";
+            echo "<table style='color: #$color' class='table table-hover pbody'>";
             foreach ($cat['commands'] as $commands) {
                 if ($rowsCount > 3){
                     break;
@@ -44,7 +46,11 @@ foreach ($catRows as $catKey => $catValue) {
                 echo "</tr>";
             }
         }
-            echo "</table>"; //end of panel-body div
+            echo "</table>";
+            //echo "</div>";//panel-body
+            echo "<div class='panel-footer'>";
+            echo "<p class='cat_more'><a class='btn btn-default push_left' href='more.php?category_cat_id={$cat['cat_id']}' role='button'>المزيد...</a></p>";
+            echo "</div>";//panel-footer
             echo "</div>"; //end of panel div
             echo "</div>"; //end of column div
     }

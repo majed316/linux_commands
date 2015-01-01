@@ -19,13 +19,13 @@ if(isset($_POST['term']) && !empty($_POST['term'])){
     if(count($result) < 1){
         echo "لم يتم العثور على نتائج";
     }  else {
-        echo '<ul>';
+        //echo '<ul>';
         foreach ($result as $row){
             //echo "<a href='{$row['command_name']}'>{$row['command_name']}</a>".'<br>';
             //echo "<a href='{$row['command_description']}'>{$row['command_description']}</a>".'<br>';
              //echo $row['command_description'].'<br>';
-            echo "<a  href=command.php?command_id={$row['command_id']}><li>{$row['command_name']} {$row['command_description']}</li></a>\r\n".'<br>';
-        } echo '</ul>';  
+            echo "<li><a class='links' href=command.php?command_id={$row['command_id']}>{$row['command_name']} {$row['command_description']}</a></li>\r\n";
+        } //echo '</ul>';  
     }
 }
 $db = null ; 
