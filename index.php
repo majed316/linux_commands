@@ -16,7 +16,7 @@ try
     $commandRows = $commandResult->fetchall();
 } catch (PDOException $e) {
     $error = 'Error fetching rows: ' . $e->getMessage();
-    include '../html/error.html.php';
+    include './html/error.html.php';
     exit();
 }
 include './html/index.html.php';

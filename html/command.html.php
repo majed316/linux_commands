@@ -1,8 +1,5 @@
 <?php
 include 'header.html.php';
-        if(isset($_SESSION['admin'])){
-            echo "<a href='logout.php'>logout</a>"; // <-- later you should move this line to header.php
-        }
         ?>
         <div id="command">
             <H2><?php echo $commandRow[0]['command_name'] ?></H2>

@@ -8,5 +8,5 @@
  */
 session_start();
 unset($_SESSION['admin']);
-header( 'Location: http://localhost/linux_commands/' ) ;
+header( "Location: http://$_SERVER[HTTP_HOST]/linux_commands" ) ;
 ?>

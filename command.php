@@ -11,11 +11,14 @@
  * 5- pass that array to command.html.php file.
  */
 include './inc/db.inc.php';
-try
+if(isset($_GET['command_id'])&&
+        $_GET['command_id'] != "" &&
+        is_numeric($_GET['command_id'])){
+    try
 {
-    $commandSql = "SELECT * FROM command WHERE command_id = {$_REQUEST['command_id']}";
-    $optionsSql = "SELECT * FROM options WHERE command_command_id = {$_REQUEST['command_id']}";
-    $usesSql = "SELECT * FROM uses WHERE command_command_id = {$_REQUEST['command_id']}";
+    $commandSql = "SELECT * FROM command WHERE command_id = {$_GET['command_id']}";
+    $optionsSql = "SELECT * FROM options WHERE command_command_id = {$_GET['command_id']}";
+    $usesSql = "SELECT * FROM uses WHERE command_command_id = {$_GET['command_id']}";
     $commandResult = $db->query($commandSql);
     $optionsResult = $db->query($optionsSql);
     $usesResult = $db->query($usesSql);
@@ -25,6 +28,16 @@ try
 } catch (PDOException $e) {
     $error = 'Error fetching rows: ' . $e->getMessage();
     include './html/error.html.php';
+    exit();
+}
+}else{
+    $message = 'صفحة غير موجودة!!';
+    include './html/msg.html.php';
+    exit();
+}
+if(count($commandRow)<1){
+    $message = 'صفحة غير موجودة!!';
+    include './html/msg.html.php';
     exit();
 }
 include './html/command.html.php';

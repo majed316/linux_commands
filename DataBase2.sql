@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2014 at 01:39 AM
+-- Generation Time: Jan 02, 2015 at 01:45 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `linux`
 --
+CREATE DATABASE IF NOT EXISTS `linux` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `linux`;
 
 -- --------------------------------------------------------
 
@@ -199,6 +202,7 @@ ALTER TABLE `options`
 --
 ALTER TABLE `uses`
   ADD CONSTRAINT `fk_uses_command1` FOREIGN KEY (`command_command_id`) REFERENCES `command` (`command_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -49,7 +49,7 @@ foreach ($catRows as $catKey => $catValue) {
             echo "</table>";
             //echo "</div>";//panel-body
             echo "<div class='panel-footer'>";
-            echo "<p class='cat_more'><a class='btn btn-default push_left' href='more.php?category_cat_id={$cat['cat_id']}' role='button'>المزيد...</a></p>";
+            echo "<p class='cat_more'><a class='btn btn-default push_left' href='more.php?catid={$cat['cat_id']}' role='button'>المزيد...</a></p>";
             echo "</div>";//panel-footer
             echo "</div>"; //end of panel div
             echo "</div>"; //end of column div

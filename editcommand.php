@@ -10,6 +10,14 @@
  * 5- Test if the admin variable is set or not, and according to that the page will be shown or not.
  * 6- Actully you may use ajax to edit the command while you are in the index.html.php page.
  */
+session_start();
+if (!$_SESSION['admin']){
+    $_SESSION['page'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    header( 'Location: http://localhost/linux_commands/admin/' );
+    exit();
+}else{
+    unset($_SESSION['page']);
+}
 include './inc/db.inc.php';
 if (!empty($_REQUEST)) {                             //there is argments passed.
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // the form submitted
@@ -64,7 +72,7 @@ if (!empty($_REQUEST)) {                             //there is argments passed.
                 exit();
             }
         }else{
-                $message = "لم يتم تمرير أي رقم تعريف";
+            $message = "لم يتم تمرير أي رقم تعريف";
             include './html/msg.html.php';
             exit();
         }

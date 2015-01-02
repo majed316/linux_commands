@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div id="logo-box" class="navbar-header navbar-right">
-        <a class="navbar-brand" href="#"><h3 style="display: inline"><img id="logo-img" class="img-responsive" src="./img/logo.png" ></h3></a>
+        <a class="navbar-brand" href="./"><h3 style="display: inline"><img id="logo-img" class="img-responsive" src="./img/logo.png" ></h3></a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#links-navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
