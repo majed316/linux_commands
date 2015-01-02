@@ -4,7 +4,7 @@
 </div>
 <footer>
     Majed & Abdulrahman<br>
-    2014 - <?php echo date("Y") ?>
+    <?php echo date("Y") ?> - 2014
     <div>
         <img id="footer-tux" src="./img/footer-tux.png">
     </div>

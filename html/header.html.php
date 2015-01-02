@@ -21,13 +21,12 @@ session_start();
             <?php
             if (isset($_SESSION['admin'])) {
                 $admin = TRUE;
-                $span = 4;
+                //$span = 4;    legacy line
                 echo "<a href='logout.php'>تسجيل خروج الأدمن</a><br>\n";
                 echo "<a href='addcommand.php'>إضافة أمر</a><br>\n";
                 //echo "<a href='addcat.php'>إضافة تصنيف</a><br>\n";
-                echo "<a href='search.php'>بحث عن أمر</a><br>\n";
             } else {
                 $admin = FALSE;
-                $span = 3;
+                //$span = 3;    legacy line
             }
             ?>

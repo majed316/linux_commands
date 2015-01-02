@@ -12,6 +12,14 @@
  * 7- loop through the data recived and insert it in database in one big submition using PDO->excute();             DONE
  * 8- Test if the admin variable is set or not, and according to that the page will be shown or not.
  */
+session_start();
+if (!$_SESSION['admin']){
+    $_SESSION['page'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    header( 'Location: http://localhost/linux_commands/admin/' );
+    exit();
+}else{
+    unset($_SESSION['page']);
+}
 include './inc/db.inc.php';
 try
 {
