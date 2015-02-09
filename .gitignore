@@ -5,3 +5,4 @@ html/.directory
 admin/.htaccess
 admin/.htpasswd
 bootstrap/
+/nbproject/private/
